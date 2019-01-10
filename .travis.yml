@@ -2,7 +2,6 @@ language: go
 sudo: required
 
 dist: trusty
-group: deprecated-2017Q4
 
 git:
   depth: 3
@@ -14,8 +13,10 @@ install:
   - sudo env PATH=$PATH GOPATH=$GOPATH bash files/check-install.sh
 
 script:
-  - bash files/check.sh
+  - git branch ci_pull_request
   - bash files/run_on_master.sh
+  - git checkout ci_pull_request
+  - bash files/check.sh
 
 notifications:
   email: false
